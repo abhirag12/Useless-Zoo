@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🦁 Useless Zoo Explorer | The World's Least Accurate Animal Encyclopedia</title>
+  <meta name="description" content="Welcome to the Useless Zoo Explorer. Every animal fact here is intentionally fictional, ridiculous, and completely incorrect. Proudly useless.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦁</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       FUNNY LOADING SCREEN
+       ======================================================================== -->
+  <div id="loading-overlay" class="loading-overlay" role="dialog" aria-modal="true" aria-label="Loading Zoo">
+    <div class="loading-box">
+      <div id="loading-spinner-emoji" class="loading-spinner-emoji">🦁</div>
+      <div id="loading-text" class="loading-text">🦁 Training the elephants...</div>
+      <div class="loading-bar-wrap">
+        <div id="loading-bar-fill" class="loading-bar-fill"></div>
+      </div>
+      <button id="skip-loading-btn" class="btn btn-outline btn-sm">Skip (I can't wait to learn false things)</button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       STICKY DISCLAIMER WARNING BANNER
+       ======================================================================== -->
+  <div class="top-disclaimer" id="top-disclaimer">
+    <span>⚠️ WARNING: Absolutely none of the scientific information on this website should be trusted. This website is proudly useless.</span>
+    <button id="disclaimer-dismiss-btn" title="I promise to believe these lies">Dismiss [OK]</button>
+  </div>
+
+  <!-- ========================================================================
+       HEADER & NAVIGATION
+       ======================================================================== -->
+  <header class="site-header">
+    <a href="#" class="brand-wrapper">
+      <span class="brand-icon">🦁</span>
+      <div class="brand-text">
+        <h1 class="brand-title">USELESS ZOO</h1>
+        <span class="brand-tagline">The World's Least Accurate Animal Encyclopedia</span>
+      </div>
+    </a>
+
+    <!-- Zoo Scientific Accuracy Tracker -->
+    <div class="accuracy-tracker" id="accuracy-tracker" title="Fluctuates due to total lack of peer review">
+      <span class="accuracy-label">Zoo Accuracy:</span>
+      <div class="accuracy-meter-container">
+        <div id="accuracy-meter-bar" class="accuracy-meter-bar" style="width: 37%;"></div>
+      </div>
+      <span id="accuracy-percent" style="font-weight: 800; font-size: 0.9rem;">37%</span>
+      <span id="accuracy-comment" class="accuracy-comment">Accuracy level: Probably not.</span>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <button id="sound-toggle-btn" class="icon-btn" title="Toggle Sound Effects (Web Audio)" aria-label="Toggle Sound">
+        🔊
+      </button>
+      <button id="theme-toggle-btn" class="icon-btn" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
+        🌙
+      </button>
+      <button id="companion-toggle-btn" class="icon-btn" title="Toggle Cursor Pet" aria-label="Toggle Cursor Companion">
+        🐌
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO SECTION WITH ANIMATED FLOATING EMOJIS
+       ======================================================================== -->
+  <section class="hero-section" id="hero-section">
+    <!-- Interactive Floating Animal Emojis -->
+    <div class="floating-emojis-container" id="floating-emojis-container">
+      <!-- Injected via JavaScript for natural random positions & bouncy physics -->
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">🌿 100% Unverified Information Guaranteed</div>
+      <h2 class="hero-title">🦁 Welcome to the <span class="highlight">Useless Zoo!</span></h2>
+      <p class="hero-subtitle">Finally, an animal encyclopedia that gets almost everything wrong.</p>
+      
+      <div class="hero-actions">
+        <a href="#zoo-database-section" class="btn btn-primary btn-lg" id="enter-zoo-btn">
+          <span>🐾</span> ENTER THE USELESS ZOO
+        </a>
+        <button class="btn btn-secondary btn-lg" id="hero-fact-btn">
+          <span>🎲</span> GIVE ME A RANDOM FACT
+        </button>
+        <button class="btn btn-outline btn-lg" id="why-exist-btn">
+          <span>🐾</span> WHY DOES THIS EXIST?
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       MOUSE-FOLLOWING ANIMAL SELECTOR TOOLBAR
+       ======================================================================== -->
+  <section class="companion-bar-section" aria-label="Cursor Companion Selector">
+    <div class="companion-bar-wrapper">
+      <div class="companion-header">
+        <h3><span>🐾</span> Choose Your Cursor Companion</h3>
+        <span class="companion-hint">Watch them chase your mouse around the screen!</span>
+      </div>
+      <div class="companion-chips" id="companion-chips">
+        <button class="companion-chip active" data-type="snail">🐌 Slow Snail</button>
+        <button class="companion-chip" data-type="chicken">🐔 Confused Chicken</button>
+        <button class="companion-chip" data-type="duck">🦆 Angry Duck</button>
+        <button class="companion-chip" data-type="turtle">🐢 Extremely Slow Turtle</button>
+        <button class="companion-chip" data-type="fish">🐟 Flying Fish</button>
+        <button class="companion-chip" data-type="elephant">🐘 Tiny Elephant</button>
+        <button class="companion-chip" data-type="dinosaur">🦖 Definitely Real Dinosaur</button>
+        <button class="companion-chip" data-type="sloth">🦥 Busy Sloth</button>
+        <button class="companion-chip" data-type="monkey">🐒 Office Monkey</button>
+        <button class="companion-chip" data-type="unicorn">🦄 Suspicious Unicorn</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       TODAY'S COMPLETELY UNNECESSARY ANIMAL (DAILY FEATURE)
+       ======================================================================== -->
+  <section class="daily-animal-section" id="daily-animal-section">
+    <div class="daily-card" id="daily-card">
+      <div class="daily-badge">🌟 Today's Completely Unnecessary Animal</div>
+      <div class="daily-emoji-badge" id="daily-emoji">🐌</div>
+      <div class="daily-details">
+        <h2 id="daily-name">Snail</h2>
+        <div class="daily-sci-name" id="daily-sci-name">Turbo Slimepack</div>
+        <p class="daily-quote" id="daily-quote">"Scientists believe this snail is approximately 4% faster than yesterday."</p>
+        <div class="daily-meta">
+          <span>Speed: <strong id="daily-speed">4 inches per epoch</strong></span>
+          <span>Scientific Confidence: <strong id="daily-confidence">1.2%</strong></span>
+          <span>Next pointless update: <strong id="daily-countdown">06:42:19</strong></span>
+        </div>
+      </div>
+      <button class="btn btn-secondary" id="daily-inspect-btn">🔬 Inspect Nonsense</button>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       USELESS ANIMAL DATABASE & GALLERY
+       ======================================================================== -->
+  <section class="zoo-database-section" id="zoo-database-section">
+    <div class="section-header-center">
+      <h2>📚 Useless Animal Database</h2>
+      <p>Browse over 20 rigorously unresearched creatures and their questionable statistics.</p>
+    </div>
+
+    <!-- Search and Category Filters -->
+    <div class="filter-controls-wrapper">
+      <div class="search-box-row">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="animal-search-input" class="search-input" placeholder="Search for an animal..." autocomplete="off">
+          <span id="clear-search-btn" class="clear-search-btn" title="Clear search">✕</span>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="category-tabs-row" id="category-tabs-row">
+        <button class="category-tab active" data-category="all">🐾 All Animals</button>
+        <button class="category-tab" data-category="jungle">🌳 Jungle</button>
+        <button class="category-tab" data-category="water">🌊 Water</button>
+        <button class="category-tab" data-category="cold">❄️ Cold</button>
+        <button class="category-tab" data-category="birds">🦜 Birds</button>
+        <button class="category-tab" data-category="nobody_asked">🤷 Animals Nobody Asked About</button>
+        <button class="category-tab" data-category="favorites" id="favorites-tab">❤️ Favorites (<span id="favorites-count">0</span>)</button>
+      </div>
+    </div>
+
+    <!-- Animals Grid -->
+    <div class="animals-grid" id="animals-grid">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- Empty Search State Template -->
+    <div id="empty-search-state" class="empty-search-state" style="display: none;">
+      <div class="empty-sofa-emoji">🛋️ 🙈</div>
+      <h3>No animal found.</h3>
+      <p>Maybe it is hiding behind the sofa, or perhaps it was never real to begin with.</p>
+      <button class="btn btn-outline btn-sm" id="reset-search-btn">Reset Search</button>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       RANDOM USELESS FACT GENERATOR
+       ======================================================================== -->
+  <section class="useless-fact-section" id="useless-fact-section">
+    <div class="fact-generator-card">
+      <div class="fact-box-inner">
+        <p class="fact-text" id="random-fact-display">
+          "Scientists have confirmed that zebras are just regular horses wearing pajamas."
+        </p>
+        <span class="fact-stamp">⚠️ CERTIFIED 100% UNVERIFIED</span>
+      </div>
+      <div class="fact-actions">
+        <button class="btn btn-secondary btn-lg" id="generate-fact-btn">
+          <span>🎲</span> GENERATE USELESS FACT
+        </button>
+        <button class="btn btn-outline" id="copy-fact-btn">
+          <span>📋</span> Copy Fact
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       COMPLETELY USELESS ANIMAL COMPARISON SHOWDOWN
+       ======================================================================== -->
+  <section class="comparison-section" id="comparison-section">
+    <div class="section-header-center">
+      <h2>⚔️ Extremely Important Animal Comparison</h2>
+      <p>Who wins in a battle of pure absurdity? Select any two competitors to find out.</p>
+    </div>
+
+    <div class="comparison-wrapper">
+      <div class="vs-selectors-row">
+        <!-- Fighter 1 -->
+        <div class="vs-card-select">
+          <div class="vs-avatar" id="fighter-1-avatar">🦁</div>
+          <select id="fighter-1-select" class="vs-select-input" aria-label="Select Animal 1">
+            <!-- Populated via JavaScript -->
+          </select>
+        </div>
+
+        <div class="vs-badge-center">
+          <div class="vs-circle">VS</div>
+          <button class="btn btn-outline btn-sm" id="random-matchup-btn">🎲 Randomize</button>
+        </div>
+
+        <!-- Fighter 2 -->
+        <div class="vs-card-select">
+          <div class="vs-avatar" id="fighter-2-avatar">🐧</div>
+          <select id="fighter-2-select" class="vs-select-input" aria-label="Select Animal 2">
+            <!-- Populated via JavaScript -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Comparison Metrics Grid -->
+      <div class="comparison-stats-grid" id="comparison-stats-grid">
+        <!-- Populated via JavaScript -->
+      </div>
+
+      <!-- Showdown Verdict -->
+      <div class="comparison-verdict-card" id="comparison-verdict-card">
+        <h4 id="verdict-title">🏆 Verdict: Penguin Wins!</h4>
+        <p id="verdict-desc">Lion roared fiercely, but Penguin attended a formal embassy dinner and negotiated a peace treaty before Lion finished his afternoon nap.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       THE WORLD'S MOST USELESS ANIMAL QUIZ
+       ======================================================================== -->
+  <section class="quiz-section" id="quiz-section">
+    <div class="section-header-center">
+      <h2>🧠 The World's Most Useless Animal Quiz</h2>
+      <p>Test your knowledge of facts that definitely are not true. Aim for 0% actual biology.</p>
+    </div>
+
+    <div class="quiz-card-container">
+      <div class="quiz-progress-row">
+        <span class="quiz-progress-text" id="quiz-progress-text">Question 1 of 5</span>
+        <div class="quiz-progress-bar-wrap">
+          <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+        </div>
+      </div>
+
+      <div id="quiz-question-view">
+        <h3 class="quiz-question-title" id="quiz-question-title">What does a giraffe use its long neck for?</h3>
+        <div class="quiz-options-list" id="quiz-options-list">
+          <!-- Populated via JavaScript -->
+        </div>
+        <div class="quiz-feedback-box" id="quiz-feedback-box"></div>
+        <button class="btn btn-primary" id="quiz-next-btn" style="display: none;">Next Question ➔</button>
+      </div>
+
+      <div id="quiz-result-view" class="quiz-result-view">
+        <div class="quiz-result-emoji">🎓 🥔</div>
+        <h3>Congratulations!</h3>
+        <div class="quiz-result-rank" id="quiz-result-rank">Senior Professor of Misinformation</div>
+        <p id="quiz-result-summary">You answered 5 questions and have learned absolutely nothing of real-world value.</p>
+        <button class="btn btn-secondary btn-lg" id="quiz-restart-btn">🔄 Retake Pointless Quiz</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       RANDOM ANIMAL CHIMERA GENERATOR (SLOT MACHINE)
+       ======================================================================== -->
+  <section class="chimera-section" id="chimera-section">
+    <div class="section-header-center">
+      <h2>🎰 Create a Completely Useless Animal</h2>
+      <p>Spin the genetic absurdity wheel and discover hybrid species that nature wisely rejected.</p>
+    </div>
+
+    <div class="chimera-container">
+      <div class="slot-reels-row">
+        <div class="slot-reel" id="reel-prefix">Flying</div>
+        <div class="slot-reel" id="reel-noun">Potato</div>
+        <div class="slot-reel" id="reel-creature">Elephant 🐘</div>
+      </div>
+
+      <button class="btn btn-secondary btn-lg" id="spin-chimera-btn" style="margin-bottom: 2rem;">
+        <span>🎰</span> SPIN THE USELESS WHEEL
+      </button>
+
+      <div class="chimera-result-display" id="chimera-result-display">
+        <div class="chimera-avatar" id="chimera-avatar">🥔🐘</div>
+        <div class="chimera-info">
+          <h3 class="chimera-title" id="chimera-name">Flying Potato Elephant</h3>
+          <div class="chimera-sci" id="chimera-sci">Elephantus Tuberosum Volantis</div>
+          <div class="chimera-props">
+            <div><strong>🏠 Habitat:</strong> <span id="chimera-habitat">Between two couch cushions during movie night</span></div>
+            <div><strong>🍃 Diet:</strong> <span id="chimera-diet">Cold pizza crusts, lost USB sticks and raw drama</span></div>
+            <div><strong>⚡ Superpower:</strong> <span id="chimera-power">Can mute any Zoom meeting by sheer force of disappointment.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       ANIMAL DETAILS POPUP MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="animal-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close details">✕</button>
+      
+      <div class="modal-body">
+        <div class="modal-header-section">
+          <div class="modal-emoji-badge" id="modal-emoji">🦁</div>
+          <div class="modal-title-wrap">
+            <h2 id="modal-name">Lion</h2>
+            <div class="modal-sci-name" id="modal-sci-name">Panthera snackus</div>
+            <span class="modal-badge-tag" id="modal-badge">King of the Living Room Rug</span>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="modal-grid">
+          <div class="modal-metric-card">
+            <div class="modal-metric-label"><span>⚖️</span> Completely Accurate Weight</div>
+            <div class="modal-metric-val" id="modal-weight">Approximately 17 refrigerators</div>
+          </div>
+          <div class="modal-metric-card">
+            <div class="modal-metric-label"><span>📏</span> Definitely Accurate Height</div>
+            <div class="modal-metric-val" id="modal-height">3.7 Wi-Fi routers</div>
+          </div>
+          <div class="modal-metric-card">
+            <div class="modal-metric-label"><span>💨</span> Totally Real Speed</div>
+            <div class="modal-metric-val" id="modal-speed">Fast enough to catch a falling biscuit</div>
+          </div>
+          <div class="modal-metric-card">
+            <div class="modal-metric-label"><span>🍃</span> Extremely Scientific Diet</div>
+            <div class="modal-metric-val" id="modal-diet">Pizza, clouds and occasionally grass</div>
+          </div>
+          <div class="modal-metric-card">
+            <div class="modal-metric-label"><span>🏠</span> Highly Reliable Habitat</div>
+            <div class="modal-metric-val" id="modal-habitat">Luxury grasslands</div>
+          </div>
+          <div class="modal-metric-card">
+            <div class="modal-metric-label"><span>⏳</span> Rigorously Calculated Lifespan</div>
+            <div class="modal-metric-val" id="modal-lifespan">Until somebody says 'Who's a good kitty?'</div>
+          </div>
+          <div class="modal-metric-card">
+            <div class="modal-metric-label"><span>⚡</span> Special Superpower</div>
+            <div class="modal-metric-val" id="modal-superpower">Can roar loud enough to wake a sleeping potato</div>
+          </div>
+          <div class="modal-metric-card">
+            <div class="modal-metric-label"><span>🎩</span> Difficulty Finding a Hat</div>
+            <div class="modal-metric-val" id="modal-hat">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+
+        <!-- Animated Progress Bars Section -->
+        <div class="modal-sliders-section">
+          <h4><span>📊</span> Ridiculous Scientific Statistics</h4>
+          <div class="modal-slider-row">
+            <span class="modal-slider-label">😴 Sleep Level:</span>
+            <div class="modal-slider-track"><div class="modal-slider-fill" id="modal-fill-sleep" style="width: 94%; background: #7b1fa2;"></div></div>
+            <span class="modal-slider-val" id="modal-val-sleep">94%</span>
+          </div>
+          <div class="modal-slider-row">
+            <span class="modal-slider-label">🍕 Pizza Compatibility:</span>
+            <div class="modal-slider-track"><div class="modal-slider-fill" id="modal-fill-pizza" style="width: 99%; background: #e65100;"></div></div>
+            <span class="modal-slider-val" id="modal-val-pizza">99%</span>
+          </div>
+          <div class="modal-slider-row">
+            <span class="modal-slider-label">🎮 Gaming Skill:</span>
+            <div class="modal-slider-track"><div class="modal-slider-fill" id="modal-fill-gaming" style="width: 42%; background: #00897b;"></div></div>
+            <span class="modal-slider-val" id="modal-val-gaming">42%</span>
+          </div>
+          <div class="modal-slider-row">
+            <span class="modal-slider-label">🧠 Brain Distribution:</span>
+            <span class="modal-slider-val" id="modal-val-brain" style="width: auto; flex: 1; text-align: left; font-size: 0.95rem;">87% roaring, 13% thinking about lunch</span>
+          </div>
+        </div>
+
+        <!-- Scientific Confidence Meter -->
+        <div class="confidence-meter-card">
+          <div class="confidence-header">
+            <span>🔬 Scientific Confidence Meter</span>
+            <span class="confidence-score" id="modal-confidence-score">3.2%</span>
+          </div>
+          <div class="confidence-bar-wrap">
+            <div class="confidence-bar-fill" id="modal-confidence-bar" style="width: 3.2%;"></div>
+          </div>
+          <div class="confidence-verdict" id="modal-confidence-verdict">Warning: Extreme risk of zero educational value detected.</div>
+        </div>
+
+        <!-- Modal Bottom Actions -->
+        <div class="modal-actions-row">
+          <button class="btn btn-secondary" id="recheck-science-btn">
+            <span>🔬</span> RECHECK SCIENCE
+          </button>
+          <button class="btn btn-outline" id="modal-favorite-btn">
+            <span>❤️</span> Add to Completely Unnecessary Favorites
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       "WHY DOES THIS EXIST?" CUSTOM MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="why-exist-modal" role="dialog" aria-modal="true">
+    <div class="modal-dialog" style="max-width: 520px; text-align: center;">
+      <button class="modal-close-btn" id="why-close-btn">✕</button>
+      <div class="modal-body" style="padding: 3rem 2rem;">
+        <div style="font-size: 5rem; margin-bottom: 1rem;">🤷‍♂️🐒</div>
+        <h3 style="font-size: 2rem; margin-bottom: 1rem;">Why Does This Exist?</h3>
+        <p style="font-size: 1.4rem; font-weight: 600; color: var(--accent-tertiary); margin-bottom: 1.5rem;">
+          "Nobody knows. Not even the developer."
+        </p>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem;">
+          No animals were consulted during the development of this platform. Several pizzas, however, were thoroughly consumed.
+        </p>
+        <button class="btn btn-primary" id="why-accept-btn">Fair Enough, Continue Browsing</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       TOAST NOTIFICATION CONTAINER
+       ======================================================================== -->
+  <div id="toast-notification" class="toast-notification">Toast message here</div>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <h2 class="footer-title">🦁 Useless Zoo Explorer</h2>
+      <p class="footer-quote">"Learn nothing. Discover everything. Regret nothing."</p>
+
+      <div class="footer-disclaimer-box">
+        <p><strong>⚠️ LEGAL & SCIENTIFIC DISCLAIMER:</strong> All animal information, statistics, and historical claims on this website are intentionally fictional and satirical. Do not cite this website in your biology exam, veterinary clinic, or dinner table arguments unless you wish to be laughed out of the room.</p>
+      </div>
+
+      <p class="footer-copy">
+        Made for entertainment and educational web-development practice. Certified 0% Peer Reviewed.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts in dependency order (Universal file:// and http:// support) -->
+  <script src="data.js"></script>
+  <script src="audio.js"></script>
+  <script src="cursor.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
