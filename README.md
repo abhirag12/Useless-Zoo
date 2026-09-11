@@ -2,96 +2,47 @@
 
 
 
-# [Project Name] 🎯
+# Kattu Vishesham 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: [Team Sparkle]
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: [Anurag KV] - [Sree Narayana Guru College Of Engineering & Technology Payyanur]
+- Member 2: [Abhirag K] - [Sree Narayana Guru College Of Engineering & Technology Payyanur]
 
 ### Project Description
-[2-3 lines about what your project does]
+[Kattu Vishesham is a fun and interactive virtual zoo where users can explore animals through emojis, animations, games, and hilarious fictional facts. 🦁🐘This completely unnecessary project combines creativity and web technologies to create an entertaining animal experience with interactive UI, JavaScript, animations, and a user-friendly design.]
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+[People around the world are desperately struggling to find completely inaccurate information about animals in an entertaining way. 🐘Existing zoos and animal websites provide useful facts, so there is a serious shortage of useless animal facts, unnecessary statistics, and totally pointless animal interactions]
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+[There is a serious lack of websites providing completely useless animal information that nobody asked for. 🐘😂 People need a place to waste their time discovering wrong facts, unnecessary statistics, and pointless animal interactions so we decided to solve a problem that never existed.]
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- [HTML5, CSS3, JavaScript]
+- [None — built using vanilla HTML, CSS & JavaScript]
+- [Google Fonts, Font Awesome]
+- [Chatgpt,Antigravity IDE]
 
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
-
-### Implementation
-For Software:
-# Installation
-[commands]
-
-# Run
-[commands]
-
-### Project Documentation
-For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+<img width="1600" height="900" alt="Screenshot 2026-09-11 213944" src="https://github.com/user-attachments/assets/8ee684f4-736e-48d5-9df0-64dd2b156ee5" />
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+<img width="1600" height="900" alt="Screenshot 2026-09-11 214022" src="https://github.com/user-attachments/assets/57364863-1c13-4135-952b-22e7308f9618" />
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+<img width="1600" height="900" alt="Screenshot 2026-09-11 214042" src="https://github.com/user-attachments/assets/7a4cb2e1-e448-430f-87bf-66c489f9a956" />
 
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
-
-For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
+https://drive.google.com/file/d/1PKXam80ukhMC8kkg4r3tK4bULV90k2GT/view?usp=sharing
 
-# Additional Demos
-[Add any extra demo materials/links]
-
-## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
